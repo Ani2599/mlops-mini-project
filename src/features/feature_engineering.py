@@ -1,10 +1,10 @@
-# feature engineering
 import numpy as np
 import pandas as pd
 import os
 from sklearn.feature_extraction.text import CountVectorizer
 import yaml
 import logging
+import joblib  # Add this import to save the vectorizer
 
 # logging configuration
 logger = logging.getLogger('feature_engineering')
@@ -73,7 +73,11 @@ def apply_bow(train_data: pd.DataFrame, test_data: pd.DataFrame, max_features: i
         test_df = pd.DataFrame(X_test_bow.toarray())
         test_df['label'] = y_test
 
-        logger.debug('Bag of Words applied and data transformed')
+        # Save the vectorizer
+        os.makedirs(os.path.dirname('models/vectorizer.pkl'), exist_ok=True)
+        joblib.dump(vectorizer, 'models/vectorizer.pkl')
+        logger.debug('Bag of Words applied and data transformed, vectorizer saved')
+
         return train_df, test_df
     except Exception as e:
         logger.error('Error during Bag of Words transformation: %s', e)

@@ -1,4 +1,4 @@
 [core]
-    remote = myremote
-['remote "myremote"']
-    url = C:\Users\Aniket\AppData\Local\Temp
+    remote = dvcstore
+['remote "dvcstore"']
+    url = s3://aniketx-bucket
