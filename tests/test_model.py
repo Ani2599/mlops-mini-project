@@ -52,7 +52,7 @@ class TestModelLoading(unittest.TestCase):
         input_df = pd.DataFrame(input_data.toarray(), columns=[str(i) for i in range(input_data.shape[1])])
 
         # Predict using the new model to verify the input and output shapes
-        prediction = self.new_model.predict(input_df)
+        prediction = self.model.predict(input_df)
 
         # Verify the input shape
         self.assertEqual(input_df.shape[1], len(self.vectorizer.get_feature_names_out()))
